@@ -1,6 +1,6 @@
 #/bin/sh
 #
-#    ZeroTrace: Oblivious Memory Primitives from Intel SGX 
+#    ZeroTrace: Oblivious Memory Primitives from Intel SGX
 #    Copyright (C) 2018  Sajin (sshsshy)
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -37,14 +37,13 @@ oblivious_flag=1
 recursion_data_size=64
 #ZT supports circuit/path oram options as the type of underlying ORAM. Remember to adjust stash sizes according to the choice of ORAM_type
 oram_type="path"
-#Z is the number of blocks in a bucket of the ORAMTree, typically PathORAM uses Z=4. But Z can be adjusted to make trade-offs on the security VS performance bar. Read more about this in the original Circuit ORAM/ Path ORAM papers. 
+#Z is the number of blocks in a bucket of the ORAMTree, typically PathORAM uses Z=4. But Z can be adjusted to make trade-offs on the security VS performance bar. Read more about this in the original Circuit ORAM/ Path ORAM papers.
 Z=4
 #ZT supports a bulk_read_interface (designed for an application we are working on). Setting bulk_request_size to 0, will perform each request in the no_of_req individually, setting any larger value will cause the untrusted components of ZT to chunk the requests into bulk chunks of that size, the enclave will then perform all the requests in the chunk before it returns the response back to the untrusted part of the program.
 bulk_request_size=0
 logfile=lfile
 
-exec_command="Sample_App/sampleapp "$N" "$no_of_req" "$stash_size" "$block_size" "$new" "$backend" "$oblivious_flag" "$recursion_data_size" "$oram_type" "$Z" "$bulk_request_size" "$logfile
+exec_command="Sample_App/sampleapp "$N" "$no_of_req" "$stash_size" "$block_size" "$new" "$oblivious_flag" "$recursion_data_size" "$oram_type" "$Z" "$bulk_request_size" "$logfile
 echo $exec_command
 $exec_command
 #Sample_App/sampleapp 10000 10 100 4096 new memory 1 64 path 4 0
-
